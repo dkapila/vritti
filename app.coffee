@@ -1,7 +1,7 @@
 express  = require 'express'
 app = express()
 
-port = 6000
+port = process.env.PORT or 6000
 
 app.get '/', (req, res) ->
     res.send 'Vritti says "Hello, World!"'
