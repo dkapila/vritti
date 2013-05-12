@@ -1,1 +1,1 @@
-web: node hello.js
+web: coffee app.coffee
