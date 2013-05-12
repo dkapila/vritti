@@ -1,2 +1,5 @@
 # Node modules are auto installed by npm
 node_modules/
+
+# This file will contain database id/pw and other stuff, so don't track it
+/user-credentials.txt
