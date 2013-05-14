@@ -1,10 +1,7 @@
-creds   = require './credentials.json'
 express = require 'express'
-url     = require 'url'
 mongodb = require 'mongodb'
 
-connection_url = "mongodb://#{creds.mongo.username}:#{creds.mongo.password}@#{creds.mongo.server}/#{creds.mongo.dbname}"
-mongo_url = url.parse(connection_url)
+connection_url = process.env.MONGOHQ_URL
 
 app = express()
 
