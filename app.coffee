@@ -13,7 +13,11 @@ app.get '/', (req, res) ->
     throw error if error
     bookdb = new mongodb.Collection(client, 'books')
     books = bookdb.find({}, limit: 10)
-    response += "We have #{books.count} books"
+    books.count (error, count) ->
+      if error
+        response += "Could not count books<br/>"
+      else
+        response += "We have #{count} books<br/>"
     books.toArray (error, thebooks) ->
       throw error if error
       for book in thebooks
