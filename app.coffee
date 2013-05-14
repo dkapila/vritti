@@ -13,18 +13,12 @@ app.get '/', (req, res) ->
     throw error if error
     bookdb = new mongodb.Collection(client, 'books')
     books = bookdb.find({}, limit: 10)
-    books.count (error, count) ->
-      if error
-        response += "Could not count books<br/>"
-      else
-        response += "We have #{count} books<br/>"
     books.toArray (error, thebooks) ->
       throw error if error
       for book in thebooks
         response += "Vritti says MongoDB has #{book.title}<br/>"
-
-    res.send(response)
-    client.close()
+      res.send(response)
+      client.close()
 
 app.listen port, ->
   console.log "Listening on port #{port}, mongo db is at #{connection_url}"
