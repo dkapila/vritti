@@ -7,7 +7,7 @@ app = express()
 
 port = process.env.PORT or 6000
 
-app.get '/', (req, res) ->
+app.get '/books/all', (req, res) ->
   response = 'Welcome to Vritti<br/>'
   mongodb.Db.connect connection_url, (error, client) ->
     throw error if error
@@ -16,7 +16,9 @@ app.get '/', (req, res) ->
     books.toArray (error, thebooks) ->
       throw error if error
       for book in thebooks
-        response += "Vritti says MongoDB has #{book.title}<br/>"
+        response += "Vritti says we have #{book.title} with #{book.lastpage} pages<br/>"
+        response += "Its first page is here<br/>"
+        response += "<img src='http://http://vrittiscans.s3-website-eu-west-1.amazonaws.com/#{book._id}/00001.#{book.imagetype}'/>"
       res.send(response)
       client.close()
 
