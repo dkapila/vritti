@@ -18,7 +18,7 @@ app.get '/books/all', (req, res) ->
       for book in thebooks
         response += "Vritti says we have #{book.title} with #{book.lastpage} pages<br/>"
         response += "Its first page is here<br/>"
-        response += "<img src='http://http://vrittiscans.s3-website-eu-west-1.amazonaws.com/#{book._id}/00001.#{book.imagetype}'/>"
+        response += "<img src='http://vrittiscans.s3-website-eu-west-1.amazonaws.com/#{book._id}/00001.#{book.imagetype}' height='400px'/>"
       res.send(response)
       client.close()
 
