@@ -12,7 +12,10 @@ app.get '/', (req, res) ->
     throw error if error
     bookdb = new mongodb.Collection(client, 'books')
     books = bookdb.find({}, limit: 10)
-    res.send "Vritti says MongoDB has #{books.count} books"
+    books.count (error, count) ->
+      throw error if error
+      res.send "Vritti says MongoDB has #{count} books"
+
     client.close()
 
 app.listen port, ->
