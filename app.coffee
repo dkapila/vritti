@@ -13,6 +13,7 @@ app.get '/', (req, res) ->
     bookdb = new mongodb.Collection(client, 'books')
     books = bookdb.find({}, limit: 10)
     res.send "Vritti says MongoDB has #{books.count} books"
+    client.close()
 
 app.listen port, ->
   console.log "Listening on port #{port}, mongo db is at #{connection_url}"
