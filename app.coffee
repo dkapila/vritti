@@ -5,7 +5,7 @@ database_url = process.env.MONGOHQ_URL
 mongoose.connect(database_url)
 
 book =
-  id: String
+  _id: String
   added: Date
   title: String
   localizedtitle: String
@@ -33,6 +33,8 @@ app.get '/', (req, res) ->
     for book in books
       console.log "One book found #{book.title}"
       response += "Found book #{book.title} with #{book.lastpage} pages<br/>"
+      response += "Its first page is: <br/>"
+      response += "<img src='http://vrittiscans.s3-website-eu-west-1.amazonaws.com/#{book._id}/00001.#{book.imagetype}' height='300px'/>"
     res.send(response)
 
 port = process.env.PORT or 6000
