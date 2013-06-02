@@ -3,3 +3,6 @@ node_modules/
 
 # This file will contain database id/pw and other stuff, so don't track it
 /.env
+
+# Other ignores
+.DS_Store
