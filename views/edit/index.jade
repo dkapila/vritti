@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+  .row
+    .span6
+      a(href="#{imageURL}", target="_blank", alt="Scanned page", title="Click to view full size in a separate window")
+        img(src="#{imageURL}", class="img-polaroid")
+  .row
+    .span12
+      a(href="#{nextURL}")
+        p.btn.btn-default Next Page

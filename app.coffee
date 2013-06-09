@@ -23,6 +23,7 @@ app.use express.static './public'
 
 # --------------------------------------------------------------- Add all routes
 (require './routes/books') app
+(require './routes/edit') app
 (require './routes/') app
 
 
