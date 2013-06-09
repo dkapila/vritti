@@ -1,6 +1,8 @@
 express = require 'express'
 mongoose = require 'mongoose'
 
+
+# --------------------------------------------------------------- Setup database
 database_url = process.env.MONGOHQ_URL
 mongoose.connect(database_url)
 
@@ -12,17 +14,19 @@ db.on 'error', ->
 db.once 'open', ->
   console.log "Database: OK"
 
+# ------------------------------------------------------------- Configure server
 app = express()
 
 app.set 'view engine', 'jade'
 app.set 'views', './views'
 app.use express.static './public'
 
-app.get '/', (req, res) ->
-  res.render 'index', { title: "Vritti - Home" }
+# --------------------------------------------------------------- Add all routes
+(require './routes/books') app
+(require './routes/') app
 
-app.get '/books', require './routes/books'
 
+# ---------------------------------------------------------------------[ START ]
 port = process.env.PORT or 6000
 app.listen port, ->
   console.log "Listening on port #{port}, mongo db is at #{database_url}"
